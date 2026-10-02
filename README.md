@@ -1,152 +1,38 @@
-# README for Numbers Script
+# Cars Script
 
-## Author Information
-- **Name:** Nate Smith
-- **Course:** CPSC 298  
-- **Assignment:** Cars Script  
-- **Date:** 3 November 2025  
+A menu-driven Bash exercise for adding and displaying cars stored in a text file.
 
-## Program Description
-This scripts is a car tracker interface that allows a user to add and store cars in a text file using append methods. It uses a case statement to track the logic of the user picking different options. They can add cars based on their YEAR, MAKE, and MODEL with putting them in the file as YEAR:MAKE:MODEL.  
+## Author and course
 
-## Example Output
-The user gets prompted with a selection and chooses first 1 then 2 then 3. 
-```
-type the number 1 to enter a new car
-type the number 2 to display the list of cars
-type the number 3 to quit and exit the program
-1
-What is the Year: 
-1999
-What is the Make: 
-Jeep
-What is the Model: 
-Cherokee
-type the number 1 to enter a new car
-type the number 2 to display the list of cars
-type the number 3 to quit and exit the program
-2
-1948:Ford:sedan
+- Nate Smith
+- CPSC 298, Chapman University
+- Assignment: Cars Script
+- Date: November 3, 2025
 
-1952:Chevrolet:coupe
+## Behavior
 
-1960:Ford:Mustang
+1. Add a car by entering its year, make, and model.
+2. Display saved cars.
+3. Quit.
 
-1972:Chevrolet:Corvette
+Cars are appended to `my-old-cars` as `YEAR:MAKE:MODEL`. `cars-input` is an input fixture, not the storage file.
 
-1977:Plymouth:Roadrunner
+## Run
 
-2006:Kia:Sedona
+Run from this repository's directory:
 
-1999:Jeep:Cherokee
-type the number 1 to enter a new car
-type the number 2 to display the list of cars
-type the number 3 to quit and exit the program
-3
-GoodBye!
-```
-
-
-## Usage
-To run the script interactively:
 ```bash
-./cars.sh
+bash cars.sh
+# Replay the supplied input fixture:
+bash cars.sh < cars-input
 ```
 
-To test with an input file (for example, `cars-input`):
-```bash
-./cars.sh < cars-input
-```
+The fixture adds a car to `my-old-cars`; repeated runs append additional entries.
 
-## How the Script Works
-1. The script begins with a **shebang** (`#!/bin/bash`) and identifying comments.  
-2. It **prompts** the user to select an option from a menu and caputes the input using `read`.  
-3. A **while loop** encapulates the program allowing the user to interact multipe times.  
-4. A **case statement** determines which option is entered allowing for easy readability.  
-5. If the reader selects `1` they are prompted further for the `$YEAR` `$MAKE` and `$MODEL` which gets appened to the file `cars-input`  
+## Learning focus and limitations
 
-## Core Logic Example
-```bash
-case $USER_INPUT in
-        "1")
-            echo "What is the Year: "
-            read -r YEAR
+This exercise practices loops, case statements, and file append operations. Input validation is limited; quit with option `3`. The quoted `"*"` case currently matches a literal asterisk rather than acting as a general invalid-input fallback.
 
-            echo "What is the Make: "
-            read -r MAKE
+## Resources and context
 
-            echo "What is the Model: "
-            read -r MODEL
-
-        
-            CAR="\n$YEAR:$MAKE:$MODEL"
-
-            echo -e "$CAR" >> my-old-cars
-            
-            ;;
-        "2")
-            cat my-old-cars
-            ;;
-        "3")
-            echo "GoodBye!"
-            ;;
-        "*")
-            echo "That is not an option"
-            echo "Remeber..."
-            ;;
-    esac
-```
-
-## Testing Results
-When tested with the input file `cars-input` containing:
-```
-1
-1984
-Toyota
-Supra
-2
-3
-```
-The script outputs:
-```
-type the number 1 to enter a new car
-type the number 2 to display the list of cars
-type the number 3 to quit and exit the program
-What is the Year: 
-What is the Make: 
-What is the Model: 
-type the number 1 to enter a new car
-type the number 2 to display the list of cars
-type the number 3 to quit and exit the program
-1948:Ford:sedan
-
-1952:Chevrolet:coupe
-
-1960:Ford:Mustang
-
-1972:Chevrolet:Corvette
-
-1977:Plymouth:Roadrunner
-
-
-1984:Toyota:Supra
-type the number 1 to enter a new car
-type the number 2 to display the list of cars
-type the number 3 to quit and exit the program
-GoodBye!
-```
- 
-  
-
-## Example Validations
-| Input | Output Behavior |
-|--------|------------------|
-| 1 | What is the Year: `2006` What is the Make: `Kia` What is the model: `Sedona` |
-| 3 | Goodbye! |
-
-
-## Resources
-None
-
-## License
-This project is part of coursework for Chapman University and is intended for educational purposes.
+No additional references were listed for the original assignment. This repository is coursework for Chapman University and is intended for educational use.
